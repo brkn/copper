@@ -3,9 +3,8 @@
 module Autocopper
   class Main
     def initialize(file_path, num_of_cops)
-      @file_path = file_path
-      @num_of_cops = num_of_cops
       @parser = Parser.new(file_path)
+      @num_of_cops = num_of_cops
 
       @index = 0
       @fixed_cops = []
@@ -13,8 +12,6 @@ module Autocopper
 
     def call
       puts "Will correct only #{@num_of_cops} rules...\n\n" unless @num_of_cops.nil?
-
-      loop_limit = @num_of_cops || 999_999_999
 
       while fixed_cops.length < loop_limit
         corrected_cop_name = Corrector.new(block, @index, @parser).correct
@@ -27,7 +24,7 @@ module Autocopper
         @fixed_cops << corrected_cop_name
       end
 
-      print_exit_stats
+      puts finished_message
     rescue StandardError => e
       warn "Error: #{e.message}"
       exit(1)
@@ -35,16 +32,22 @@ module Autocopper
 
     private
 
+    def loop_limit
+      @loop_limit ||= if @num_of_cops.nil?
+                        999_999_999
+                      else
+                        @num_of_cops
+                      end
+    end
+
     def block
       @parser.get_block(@index)
     end
 
-    def print_exit_stats
-      if @fixed_cops.empty?
-        puts "There wasn't any cops that can be fixed via autocorrect."
-      else
-        puts "Fixed cops: #{@fixed_cops.join(', ')}"
-      end
+    def finished_message
+      return "There wasn't any cops that can be fixed via autocorrect." if @fixed_cops.empty?
+
+      "Fixed cops: #{@fixed_cops.join(', ')}"
     end
 
     # trap "SIGINT" do
@@ -53,9 +56,8 @@ module Autocopper
     #   # TODO: Move this into its own class
     #   # puts "FIXME, add the #{deleted_block} into the #{index} again"
     #   # puts "FIXME, call git reset --hard HEAD"
-    #   # puts "FIXME, finish the "
 
-    #   print_exit_stats(fixed_cops)
+    #   puts finished_message
 
     #   exit 130
     # end
