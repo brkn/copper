@@ -1,20 +1,20 @@
-require_relative "lib/example/version"
+require_relative "lib/autocopper/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "example"
-  spec.version = Example::VERSION
-  spec.authors = ["Example Owner"]
-  spec.email = ["owner@example.com"]
+  spec.name = "autocopper"
+  spec.version = Autocopper::VERSION
+  spec.authors = ["Berkan Unal"]
+  spec.email = ["Berkanunal@gmail.com"]
 
   spec.summary = ""
-  spec.homepage = "https://github.com/mattbrictson/gem"
+  spec.homepage = "https://github.com/brkn/copper"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6"
 
   spec.metadata = {
-    "bug_tracker_uri" => "https://github.com/mattbrictson/gem/issues",
-    "changelog_uri" => "https://github.com/mattbrictson/gem/releases",
-    "source_code_uri" => "https://github.com/mattbrictson/gem",
+    "bug_tracker_uri" => "https://github.com/brkn/copper/issues",
+    "changelog_uri" => "https://github.com/brkn/copper/releases",
+    "source_code_uri" => "https://github.com/brkn/copper",
     "homepage_uri" => spec.homepage,
     "rubygems_mfa_required" => "true"
   }
