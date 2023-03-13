@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require "autocopper"
+Autocopper::CLI.new.call(ARGV)
