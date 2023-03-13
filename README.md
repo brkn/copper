@@ -20,10 +20,6 @@ TODO: Description of this gem goes here.
 $ gem install autocopper
 ```
 
-```ruby
-require "autocopper"
-```
-
 ## Support
 
 If you want to report a bug, or have ideas, feedback or questions about the gem, [let me know via GitHub issues](https://github.com/brkn/copper/issues/new) and I will do my best to provide a helpful answer. Happy hacking!
