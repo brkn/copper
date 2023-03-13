@@ -1,4 +1,4 @@
-module Example
+module Copper
   class CLI
     def call(_argv)
     end

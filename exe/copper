@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require "copper"
+Copper::CLI.new.call(ARGV)
