@@ -7,14 +7,14 @@ Gem::Specification.new do |spec|
   spec.email = ["Berkanunal@gmail.com"]
 
   spec.summary = ""
-  spec.homepage = "https://github.com/brkn/copper"
+  spec.homepage = "https://github.com/brkn/autocopper"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6"
 
   spec.metadata = {
-    "bug_tracker_uri" => "https://github.com/brkn/copper/issues",
-    "changelog_uri" => "https://github.com/brkn/copper/releases",
-    "source_code_uri" => "https://github.com/brkn/copper",
+    "bug_tracker_uri" => "https://github.com/brkn/autocopper/issues",
+    "changelog_uri" => "https://github.com/brkn/autocopper/releases",
+    "source_code_uri" => "https://github.com/brkn/autocopper",
     "homepage_uri" => spec.homepage,
     "rubygems_mfa_required" => "true"
   }
