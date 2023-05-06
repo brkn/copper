@@ -19,12 +19,6 @@ Rake::Task["release"].enhance do
   system "open https://github.com/brkn/copper/releases"
 end
 
-task :disable_overcommit do
-  ENV["OVERCOMMIT_DISABLE"] = "1"
-end
-
-Rake::Task[:build].enhance [:disable_overcommit]
-
 task :verify_gemspec_files do
   git_files = `git ls-files -z`.split("\x0")
   gemspec_files = Gem::Specification.load("autocopper.gemspec").files.sort

@@ -13,7 +13,7 @@ module Autocopper
     def call
       puts "Will correct only #{@num_of_cops} rules...\n\n" unless @num_of_cops.nil?
 
-      while fixed_cops.length < loop_limit
+      while @fixed_cops.length < loop_limit
         corrected_cop_name = Corrector.new(block, @index, @parser).correct
 
         if corrected_cop_name.nil?
@@ -27,7 +27,7 @@ module Autocopper
       puts finished_message
     rescue StandardError => e
       warn "Error: #{e.message}"
-      exit(1)
+      raise e
     end
 
     private

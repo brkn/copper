@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# TODO: add dry-cli gem
-
 module Autocopper
   class CLI
     DEFAULT_FILE_PATH = ".rubocop_todo.yml"
@@ -19,7 +17,7 @@ module Autocopper
 
       Integer(arg)
     rescue StandardError
-      raise "max_number_of_commits should be a positive integer, recieved #{arg}.\n#{usage_message}"
+      raise "number_of_cops should be a positive integer, recieved #{arg}.\n#{usage_message}"
     end
 
     def file_path
@@ -29,7 +27,7 @@ module Autocopper
     end
 
     def usage_message
-      "Usage: copper [max_number_of_commits]"
+      "Usage: copper [number_of_cops]"
     end
   end
 end
