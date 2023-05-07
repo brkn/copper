@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "bundler/gem_tasks"
 require "rake/testtask"
 require "rubocop/rake_task"
@@ -103,7 +105,7 @@ module RubyVersions
     private
 
     def versions
-      @_versions ||= begin
+      @versions ||= begin
         yaml = URI.open("https://raw.githubusercontent.com/ruby/www.ruby-lang.org/HEAD/_data/downloads.yml")
         YAML.safe_load(yaml, symbolize_names: true)
       end
