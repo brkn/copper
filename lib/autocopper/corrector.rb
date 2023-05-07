@@ -2,13 +2,12 @@
 
 module Autocopper
   class Corrector
+    # TODO: expect less arguments or make them kwargs
     def initialize(block, index, file_parser, file_path)
       @block = block
       @index = index
       @file_parser = file_parser
       @file_path = file_path
-
-      @autocorrect, @excluded_files, @cop_name = @block.values_at(:autocorrect, :excluded_files, :cop_name)
     end
 
     def correct
@@ -18,14 +17,14 @@ module Autocopper
       rubocop_autocorrect
       git_commit
 
-      @cop_name
+      @block.cop_name
     end
 
     private
 
     def valid?
-      return false if @excluded_files.empty?
-      return false if @autocorrect == "none"
+      return false if @block.excluded_files.empty?
+      return false if @block.autocorrect == "none"
 
       true
     end
@@ -42,7 +41,7 @@ module Autocopper
 
     def git_commit
       raise "git commit failed" unless system("git add #{excluded_files_argument} #{@file_path} > /dev/null")
-      raise "git commit failed" unless system("git commit -m 'Fix #{@cop_name} violations' > /dev/null")
+      raise "git commit failed" unless system("git commit -m 'Fix #{@block.cop_name} violations' > /dev/null")
 
       puts "Created a git commit for #{kebab_cop_name}...\n\n"
 
@@ -50,11 +49,11 @@ module Autocopper
     end
 
     def excluded_files_argument
-      @excluded_files.join(" ")
+      @block.excluded_files.join(" ")
     end
 
     def kebab_cop_name
-      Utils.to_kebab_case(@cop_name)
+      Utils.to_kebab_case(@block.cop_name)
     end
 
     # def with_seperate_branch

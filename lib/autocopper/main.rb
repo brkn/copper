@@ -3,7 +3,7 @@
 module Autocopper
   class Main
     def initialize(file_path, num_of_cops)
-      @parser = Parser.new(file_path)
+      @file_parser = File.new(file_path)
       @num_of_cops = num_of_cops
 
       @index = 0
@@ -14,7 +14,7 @@ module Autocopper
       puts "Will correct only #{@num_of_cops} rules...\n\n" unless @num_of_cops.nil?
 
       while @fixed_cops.length < loop_limit
-        corrected_cop_name = Corrector.new(block, @index, @parser).correct
+        corrected_cop_name = Corrector.new(block, @index, @file_parser).correct
 
         if corrected_cop_name.nil?
           @index += 1
@@ -41,7 +41,7 @@ module Autocopper
     end
 
     def block
-      @parser.get_block(@index)
+      @file_parser.get_block(@index)
     end
 
     def finished_message
