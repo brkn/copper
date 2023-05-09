@@ -12,12 +12,12 @@ module Autocopper
     end
 
     def cop_name
-      @parsed_yaml.keys.first.to_s
+      parsed_yaml.keys.first.to_s
     end
 
     def excluded_files
       # TODO: clean up this access
-      @parsed_yaml[@cop_name]["Exclude"] || []
+      parsed_yaml[cop_name]["Exclude"] || []
     end
 
     def autocorrect
