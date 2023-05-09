@@ -5,7 +5,7 @@ module Autocopper
     DEFAULT_FILE_PATH = ".rubocop_todo.yml"
 
     def call(argv)
-      raise "Incorrect number of arguments.\n#{usage_message}" if ARGV.length > 1
+      raise "Incorrect number of arguments.\n#{usage_message}" if argv.length > 1
 
       Main.new(file_path, num_of_cops(argv[0])).call
     end
@@ -27,7 +27,7 @@ module Autocopper
     end
 
     def usage_message
-      "Usage: copper [number_of_cops]"
+      "Usage: autocopper [number_of_cops]"
     end
   end
 end
