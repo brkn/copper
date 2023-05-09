@@ -34,9 +34,13 @@ module Autocopper
     end
 
     def rubocop_autocorrect
-      raise "rubocop autocorrect failed" unless system("bundle exec rubocop -A #{excluded_files_argument} > /dev/null")
+      exit_status = system("bundle exec rubocop -A #{excluded_files_argument} > /dev/null")
 
-      puts "Auto corrected files via Rubocop."
+      if exit_status
+        puts "Auto corrected files via Rubocop."
+      else
+        raise "rubocop autocorrect failed"
+      end
     end
 
     def git_commit
