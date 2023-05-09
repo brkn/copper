@@ -3,7 +3,7 @@
 module Autocopper
   class Main
     def initialize(file_path, num_of_cops)
-      @file_parser = File.new(file_path)
+      @file_parser = FileParser.new(file_path)
       @num_of_cops = num_of_cops
 
       @index = 0
