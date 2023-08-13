@@ -1,5 +1,5 @@
 require:
-  # - rubocop-rspec
+  - rubocop-rspec
   - rubocop-packaging
   - rubocop-performance
   - rubocop-rake
@@ -15,6 +15,9 @@ Style/Documentation:
 Rake/Desc:
   Enabled: false
 
+RSpec/NotToNot:
+  EnforcedStyle: to_not
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
@@ -26,3 +29,4 @@ AllCops:
   Exclude:
     - "tmp/**/*"
     - "vendor/**/*"
+    - "spec/fixtures/**/*"
