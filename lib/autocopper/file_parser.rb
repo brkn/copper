@@ -21,12 +21,15 @@ module Autocopper
 
     def remove_block(block_index)
       block_index_with_header = block_index + 1
+      # TODO: fix naming here, raw_blocks_snapshot is horrible.
+      raw_blocks_snapshot = raw_blocks # have to create a copy of the hash here
 
-      raw_removed_block = raw_blocks.delete_at(block_index_with_header)
+      raw_removed_block = raw_blocks_snapshot.delete_at(block_index_with_header)
+      updated_raw_blocks = raw_blocks_snapshot.join("\n\n")
+
+      File.write(@file_path, updated_raw_blocks)
+
       removed_block = Block.new(raw_removed_block)
-
-      updated_content = raw_blocks.join("\n\n")
-      File.write(@file_path, updated_content)
 
       puts "Removed #{removed_block.cop_name} block from #{@file_path} file"
 
