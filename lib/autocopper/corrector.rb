@@ -35,15 +35,15 @@ module Autocopper
     def rubocop_autocorrect
       exit_status = system("bundle exec rubocop -A #{excluded_files_argument} > /dev/null")
 
-      if exit_status
-        puts "Auto corrected files via Rubocop."
-      else
-        raise "rubocop autocorrect failed"
-      end
+      raise "rubocop autocorrect failed" if exit_status.nonzero?
+
+      puts "Auto corrected files via Rubocop."
     end
 
     def git_commit
-      raise "git commit failed" unless system("git add #{excluded_files_argument} #{@file_parser.file_path} > /dev/null")
+      unless system("git add #{excluded_files_argument} #{@file_parser.file_path} > /dev/null")
+        raise "git commit failed"
+      end
       raise "git commit failed" unless system("git commit -m 'Fix #{@block.cop_name} violations' > /dev/null")
 
       puts "Created a git commit for #{kebab_cop_name}...\n\n"
