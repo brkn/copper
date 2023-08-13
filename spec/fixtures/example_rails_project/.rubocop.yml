@@ -1,0 +1,15 @@
+inherit_mode:
+  merge:
+    - Exclude
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-factory_bot
+
+Style/YAMLFileRead:
+  Enabled: true
+
+AllCops:
+  NewCops: enable
